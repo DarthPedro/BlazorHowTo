@@ -1,0 +1,12 @@
+﻿@inject IJSRuntime JSRuntime
+
+@code {
+    [Parameter]
+    public string Theme { get; set; } = "dark";    // Default theme
+
+    protected override async Task OnParametersSetAsync()
+    {
+        // Use JavaScript to set the data-bs-theme attribute on the <html> tag
+        await JSRuntime.InvokeVoidAsync("setHtmlTheme", Theme);
+    }
+}
